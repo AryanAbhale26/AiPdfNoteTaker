@@ -30,6 +30,24 @@ Click below to watch the demo video:
 First, run the development server:
 
 ```bash
+# Create a new Next.js app
+npx create-next-app@latest my-saas-notes-app
+# or
+yarn create next-app my-saas-notes-app
+# or
+pnpm create next-app my-saas-notes-app
+
+# Move into the project directory
+cd my-saas-notes-app
+
+# Install dependencies
+npm install
+# or
+yarn install
+# or
+pnpm install
+
+# Run the development server
 npm run dev
 # or
 yarn dev
@@ -37,4 +55,15 @@ yarn dev
 pnpm dev
 # or
 bun dev
+
+# Install Convex CLI
+npm install -g convex
+# or
+yarn global add convex
+
+# Initialize Convex DB
+convex init
+
+# Start Convex development server in a new terminal
+convex dev
 ```
