@@ -6,11 +6,12 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 This SaaS application allows users to take notes in a rich-text editor, similar to MS Word, while viewing **PDFs and videos side by side**. It enhances productivity by allowing users to **watch videos and read PDFs while taking notes simultaneously**. Notes can be saved and accessed later from any device.
 
-### 🎥 Demo Video  
-[![Watch the Video]
-https://github.com/user-attachments/assets/c05b0580-1134-405f-8639-58e2e6c355af
+# 🎥 Demo Video  
 
-Click the image or [watch the demo video here](https://github.com/user-attachments/assets/6e31de88-06da-4aae-9ec7-ee2cd6bdcee3).
+Click below to watch the demo video:
+
+[![Watch the Video](https://github.com/user-attachments/assets/c05b0580-1134-405f-8639-58e2e6c355af)](https://github.com/user-attachments/assets/6e31de88-06da-4aae-9ec7-ee2cd6bdcee3)
+
 # 🚀 Features
 
 - 📄 **Side-by-side PDF Viewer and Text Editor** – View PDFs and take notes in real-time.  
