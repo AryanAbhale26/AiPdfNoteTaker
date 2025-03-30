@@ -15,7 +15,6 @@ Click below to watch the demo video:
 # 🚀 Features
 
 - 📄 **Side-by-side PDF Viewer and Text Editor** – View PDFs and take notes in real-time.  
-- 🎥 **Video Support** – Watch educational/reference videos while taking notes.  
 - ✍️ **Rich-Text Editing** – Format text with bold, italics, headings, lists, and more.  
 - 💾 **Auto-save & Manual Save** – Save notes automatically or manually.  
 - 🔒 **User Authentication** – Secure login and account management.  
