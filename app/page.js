@@ -1,103 +1,100 @@
-import Image from "next/image";
+"use client";
+import { Button } from "@/components/ui/button";
+import { useMutation } from "convex/react";
+import React, { useEffect } from "react";
+import { api } from "@/convex/_generated/api";
+import { motion } from "framer-motion";
+import { useUser } from "@clerk/nextjs";
 
-export default function Home() {
+const Page = () => {
+  const { user } = useUser();
+  const createUser = useMutation(api.user.createUser);
+
+  const CheckUser = async () => {
+    try {
+      if (!user?.primaryEmailAddress?.emailAddress) {
+        console.error("User email not available");
+        return;
+      }
+      await createUser({
+        email: user.primaryEmailAddress.emailAddress,
+        imageUrl: user.imageUrl,
+        userName: user.fullName,
+      });
+    } catch (error) {
+      console.error("Error creating user:", error);
+    }
+  };
+
+  useEffect(() => {
+    if (user) {
+      CheckUser();
+    }
+  }, [user]);
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
+    <div className="bg-gray-900 text-white transition-colors duration-300 min-h-screen">
+      {/* Interactive Animated Background */}
+      <div className="relative flex justify-center items-center h-screen overflow-hidden">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.5 }}
+          className="bg-gradient-to-r from-gray-800 via-gray-900 to-black absolute inset-0 animate-gradient"
         />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+        {/* Blurry Animated Circles */}
+        <div className="absolute inset-0 overflow-hidden">
+          <motion.div
+            animate={{ y: [0, -30, 0], x: [0, 30, 0], scale: [1, 1.2, 1] }}
+            transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
+            className="absolute w-72 h-72 bg-purple-800 opacity-30 rounded-full blur-3xl top-10 left-20"
+          />
+          <motion.div
+            animate={{
+              y: [-20, 10, -20],
+              x: [-10, 20, -10],
+              scale: [1, 1.3, 1],
+            }}
+            transition={{ repeat: Infinity, duration: 8, ease: "easeInOut" }}
+            className="absolute w-96 h-96 bg-pink-800 opacity-30 rounded-full blur-3xl bottom-10 right-10"
+          />
+          <motion.div
+            animate={{
+              y: [10, -10, 10],
+              x: [-20, 20, -20],
+              scale: [1, 1.1, 1],
+            }}
+            transition={{ repeat: Infinity, duration: 7, ease: "easeInOut" }}
+            className="absolute w-80 h-80 bg-blue-800 opacity-30 rounded-full blur-3xl top-20 right-40"
+          />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+
+        {/* Main Content */}
+        <motion.div
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1 }}
+          className="z-10 text-center"
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+          <h1 className="text-5xl font-bold mb-4">Welcome to Chatly ✨</h1>
+          <p className="text-lg text-gray-300 max-w-xl mx-auto">
+            Your AI-powered PDF note-taking app. Upload PDFs, ask AI questions,
+            or use it like MS-Word. Save notes & boost productivity
+            effortlessly!
+          </p>
+          <div className="mt-6">
+            <Button
+              className="px-6 py-3 bg-gray-700 text-white font-semibold rounded-lg shadow-lg hover:scale-105 transition-transform"
+              onClick={() => (window.location.href = "/dashboard")}
+            >
+              Get Started 🚀
+            </Button>
+          </div>
+        </motion.div>
+      </div>
     </div>
   );
-}
+};
+
+export default Page;
